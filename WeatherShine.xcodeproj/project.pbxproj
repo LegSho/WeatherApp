@@ -7,23 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		789FEACB2027334600AF1B8F /* LocationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789FEACA2027334600AF1B8F /* LocationsVC.swift */; };
 		78AF8E95202606920089855A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF8E94202606920089855A /* AppDelegate.swift */; };
-		78AF8E97202606920089855A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF8E96202606920089855A /* ViewController.swift */; };
 		78AF8E9A202606920089855A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78AF8E98202606920089855A /* Main.storyboard */; };
 		78AF8E9D202606920089855A /* WeatherShine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78AF8E9B202606920089855A /* WeatherShine.xcdatamodeld */; };
 		78AF8E9F202606920089855A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78AF8E9E202606920089855A /* Assets.xcassets */; };
 		78AF8EA2202606920089855A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78AF8EA0202606920089855A /* LaunchScreen.storyboard */; };
+		78AF8EAE202674C10089855A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF8EAD202674C10089855A /* MainVC.swift */; };
+		78E8911120274DE1007E9F92 /* UserSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8911020274DE1007E9F92 /* UserSettingVC.swift */; };
+		78E89113202750FA007E9F92 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E89112202750FA007E9F92 /* SearchVC.swift */; };
+		78E8911520276361007E9F92 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8911420276361007E9F92 /* CollectionCell.swift */; };
+		78E8911A20279B7F007E9F92 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E8911920279B7F007E9F92 /* TableViewCell.swift */; };
+		78F0D16B20287A9200E77F08 /* TransitionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D16A20287A9200E77F08 /* TransitionExtension.swift */; };
+		78F0D16E2028832C00E77F08 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D16D2028832C00E77F08 /* Constants.swift */; };
+		78F0D17020288C5000E77F08 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D16F20288C5000E77F08 /* API.swift */; };
+		78F0D1732029210C00E77F08 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D1722029210C00E77F08 /* Forecast.swift */; };
+		78F0D175202925D600E77F08 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0D174202925D600E77F08 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		789FEACA2027334600AF1B8F /* LocationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsVC.swift; sourceTree = "<group>"; };
 		78AF8E91202606920089855A /* WeatherShine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherShine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AF8E94202606920089855A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		78AF8E96202606920089855A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		78AF8E99202606920089855A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78AF8E9C202606920089855A /* WeatherShine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherShine.xcdatamodel; sourceTree = "<group>"; };
 		78AF8E9E202606920089855A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78AF8EA1202606920089855A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78AF8EA3202606920089855A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78AF8EAD202674C10089855A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		78E8911020274DE1007E9F92 /* UserSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingVC.swift; sourceTree = "<group>"; };
+		78E89112202750FA007E9F92 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		78E8911420276361007E9F92 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		78E8911920279B7F007E9F92 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		78F0D16A20287A9200E77F08 /* TransitionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionExtension.swift; sourceTree = "<group>"; };
+		78F0D16D2028832C00E77F08 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		78F0D16F20288C5000E77F08 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		78F0D1722029210C00E77F08 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		78F0D174202925D600E77F08 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78A4FC1A202B108E0069466A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				78F0D16F20288C5000E77F08 /* API.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		78AF8E88202606920089855A = {
 			isa = PBXGroup;
 			children = (
@@ -57,9 +85,12 @@
 			isa = PBXGroup;
 			children = (
 				78AF8E98202606920089855A /* Main.storyboard */,
-				78AF8EAB202606D70089855A /* Model */,
+				78F0D171202920CC00E77F08 /* Model */,
 				78AF8EAC202606DC0089855A /* View */,
 				78AF8EAA202606C70089855A /* Controller */,
+				78A4FC1A202B108E0069466A /* Services */,
+				78E8911620276439007E9F92 /* extensions */,
+				78F0D16C2028830400E77F08 /* Constants */,
 				78AF8EA9202606AD0089855A /* Supporting Files */,
 			);
 			path = WeatherShine;
@@ -80,23 +111,46 @@
 		78AF8EAA202606C70089855A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				78AF8E96202606920089855A /* ViewController.swift */,
+				78AF8EAD202674C10089855A /* MainVC.swift */,
+				789FEACA2027334600AF1B8F /* LocationsVC.swift */,
+				78E8911020274DE1007E9F92 /* UserSettingVC.swift */,
+				78E89112202750FA007E9F92 /* SearchVC.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		78AF8EAB202606D70089855A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		78AF8EAC202606DC0089855A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				78E8911420276361007E9F92 /* CollectionCell.swift */,
+				78E8911920279B7F007E9F92 /* TableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		78E8911620276439007E9F92 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				78F0D16A20287A9200E77F08 /* TransitionExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		78F0D16C2028830400E77F08 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				78F0D16D2028832C00E77F08 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		78F0D171202920CC00E77F08 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				78F0D1722029210C00E77F08 /* Forecast.swift */,
+				78F0D174202925D600E77F08 /* Weather.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,9 +225,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78AF8E97202606920089855A /* ViewController.swift in Sources */,
+				78E89113202750FA007E9F92 /* SearchVC.swift in Sources */,
+				78E8911A20279B7F007E9F92 /* TableViewCell.swift in Sources */,
 				78AF8E9D202606920089855A /* WeatherShine.xcdatamodeld in Sources */,
+				789FEACB2027334600AF1B8F /* LocationsVC.swift in Sources */,
+				78F0D1732029210C00E77F08 /* Forecast.swift in Sources */,
+				78F0D17020288C5000E77F08 /* API.swift in Sources */,
+				78AF8EAE202674C10089855A /* MainVC.swift in Sources */,
+				78F0D16E2028832C00E77F08 /* Constants.swift in Sources */,
+				78F0D175202925D600E77F08 /* Weather.swift in Sources */,
 				78AF8E95202606920089855A /* AppDelegate.swift in Sources */,
+				78F0D16B20287A9200E77F08 /* TransitionExtension.swift in Sources */,
+				78E8911520276361007E9F92 /* CollectionCell.swift in Sources */,
+				78E8911120274DE1007E9F92 /* UserSettingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,8 +374,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WeatherShine/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WeatherShine/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IgorTab.WeatherShine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -324,8 +389,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WeatherShine/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WeatherShine/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IgorTab.WeatherShine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
