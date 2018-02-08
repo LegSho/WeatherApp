@@ -15,7 +15,6 @@ class Forecast{
             
             let json = API(url: urlForForecast)
             json.getAPI({ (dictionary) in
-                
                 if let weatherDictionary = dictionary?["currently"] as? [String: Any] {
                     let currentWeather = Weather(json: weatherDictionary)
                     completion(currentWeather)

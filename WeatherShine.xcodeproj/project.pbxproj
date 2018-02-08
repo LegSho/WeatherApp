@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		789FEACB2027334600AF1B8F /* LocationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789FEACA2027334600AF1B8F /* LocationsVC.swift */; };
+		78A4FC1C202B13AD0069466A /* BindToKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4FC1B202B13AD0069466A /* BindToKeyboard.swift */; };
+		78A4FC21202B7B4D0069466A /* SegmentedControllerEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4FC20202B7B4D0069466A /* SegmentedControllerEnums.swift */; };
+		78A4FC23202B8DE40069466A /* DoubleExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4FC22202B8DE40069466A /* DoubleExt.swift */; };
 		78AF8E95202606920089855A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF8E94202606920089855A /* AppDelegate.swift */; };
 		78AF8E9A202606920089855A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78AF8E98202606920089855A /* Main.storyboard */; };
 		78AF8E9D202606920089855A /* WeatherShine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78AF8E9B202606920089855A /* WeatherShine.xcdatamodeld */; };
@@ -27,6 +30,9 @@
 
 /* Begin PBXFileReference section */
 		789FEACA2027334600AF1B8F /* LocationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsVC.swift; sourceTree = "<group>"; };
+		78A4FC1B202B13AD0069466A /* BindToKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindToKeyboard.swift; sourceTree = "<group>"; };
+		78A4FC20202B7B4D0069466A /* SegmentedControllerEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControllerEnums.swift; sourceTree = "<group>"; };
+		78A4FC22202B8DE40069466A /* DoubleExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExt.swift; sourceTree = "<group>"; };
 		78AF8E91202606920089855A /* WeatherShine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherShine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AF8E94202606920089855A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78AF8E99202606920089855A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +71,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		78A4FC1F202B7B210069466A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				78A4FC20202B7B4D0069466A /* SegmentedControllerEnums.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		78AF8E88202606920089855A = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +103,7 @@
 				78AF8EAC202606DC0089855A /* View */,
 				78AF8EAA202606C70089855A /* Controller */,
 				78A4FC1A202B108E0069466A /* Services */,
+				78A4FC1F202B7B210069466A /* Enums */,
 				78E8911620276439007E9F92 /* extensions */,
 				78F0D16C2028830400E77F08 /* Constants */,
 				78AF8EA9202606AD0089855A /* Supporting Files */,
@@ -132,6 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				78F0D16A20287A9200E77F08 /* TransitionExtension.swift */,
+				78A4FC1B202B13AD0069466A /* BindToKeyboard.swift */,
+				78A4FC22202B8DE40069466A /* DoubleExt.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -228,7 +245,10 @@
 				78E89113202750FA007E9F92 /* SearchVC.swift in Sources */,
 				78E8911A20279B7F007E9F92 /* TableViewCell.swift in Sources */,
 				78AF8E9D202606920089855A /* WeatherShine.xcdatamodeld in Sources */,
+				78A4FC21202B7B4D0069466A /* SegmentedControllerEnums.swift in Sources */,
 				789FEACB2027334600AF1B8F /* LocationsVC.swift in Sources */,
+				78A4FC1C202B13AD0069466A /* BindToKeyboard.swift in Sources */,
+				78A4FC23202B8DE40069466A /* DoubleExt.swift in Sources */,
 				78F0D1732029210C00E77F08 /* Forecast.swift in Sources */,
 				78F0D17020288C5000E77F08 /* API.swift in Sources */,
 				78AF8EAE202674C10089855A /* MainVC.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 
 class LocationsVC: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -18,11 +18,11 @@ class LocationsVC: UIViewController {
         tableView.dataSource = self
         //tableView.isHidden = false  if there is any favourite city in there
     }
-
+    
     
     @IBAction func backBtnPressed(_ sender: Any) {
         guard let MVC = storyboard?.instantiateViewController(withIdentifier: to_MainVC) as? MainVC else { return }
-        transitionDismissRight(MVC)
+        transitionFromRight(MVC)
     }
     
     @IBAction func btnToSearchVCPressed(_ sender: Any) {

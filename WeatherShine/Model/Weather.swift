@@ -10,10 +10,10 @@ import Foundation
 
 
 class Weather {
-    let temperature: Double?
-    let weatherIcon: String?
-    let windSpeed: Double?
-    let windDirection: Int?
+    let temperature: Double!
+    let weatherIcon: String!
+    let windSpeed: Double!
+    let windDirection: Int!
     
     init(json: [String: Any]){
         temperature = json["temperature"] as? Double
