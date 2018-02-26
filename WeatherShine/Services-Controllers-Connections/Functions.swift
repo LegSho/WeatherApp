@@ -15,48 +15,7 @@ class Functions {
     func degreesToRad(_ degrees: Int32) -> CGFloat  {
         return CGFloat(Double(degrees) * 3.1415 / 180)
     }
-    
-//    func temperaturePresentation(temp: Double, tempUnitLbl: UILabel, temperatureLbl: UILabel) {
-//        if let userChoice = UserDefaults.standard.value(forKey: "tempUnit") as? Int {
-//            if city.name == "" {
-//                tempUnitLbl.isHidden = true
-//            }
-//            tempUnitLbl.isHidden = false
-//            let temperature = city.temperature
-//            if userChoice == 0 {
-//                let tempUnit = "°C"
-//                tempUnitLbl.text = tempUnit
-//                let result = String(format: "%.0f", (temp-32) * 5/9)
-//                temperatureLbl.text = result
-//            } else {
-//                let tempUnit = "°F"
-//                tempUnitLbl.text = tempUnit
-//                let result = String(format: "%.0f", temp)
-//                temperatureLbl.text = result
-//            }
-//        }
-//    }
-    
-//    func windSpeedVelocityPresentation(windSpeedLbl: UILabel, windSpeedUnit: UILabel, speed: Double){
-//        if let userChoise = UserDefaults.standard.value(forKey: "windSpeedUnit") as? Int {
-//            if windSpeedLbl.text == "" {
-//                windSpeedUnit.isHidden = true
-//            }
-//            windSpeedUnit.isHidden = false
-//            if userChoise == 0 {
-//                let windUnit = "m/s"
-//                windSpeedUnit.text = windUnit
-//                let result = String(format: "%.0f", speed)
-//                windSpeedLbl.text = result
-//            } else {
-//                let windUnit = "km/h"
-//                windSpeedUnit.text = windUnit
-//                let result = String(format: "%.0f", (speed * 3.6))
-//                windSpeedLbl.text = result
-//            }
-//        }
-//    }
-    
+
     func windDirectionPresentation(angle: Int32, windSpeedPicture: UIImageView){
         windSpeedPicture.image = UIImage(named: "direction0-compas")
         windSpeedPicture.transform = CGAffineTransform(rotationAngle: CGFloat(self.degreesToRad(angle)))
@@ -90,4 +49,48 @@ class Functions {
         }
         return reversedCities
     }
+    
+    //    pokusavao sam da ove 2 donje f-je iz MainViewControllera izvucem u posebnu klasu, iako mi samo tamo trebaju, ali me je const. zezala f-ja za collectionViewCell - configureCell :/, pa sam ih ostavio tamo ipak
+    
+    
+    //    func temperaturePresentation(temp: Double, tempUnitLbl: UILabel, temperatureLbl: UILabel) {
+    //        if let userChoice = UserDefaults.standard.value(forKey: "tempUnit") as? Int {
+    //            if city.name == "" {
+    //                tempUnitLbl.isHidden = true
+    //            }
+    //            tempUnitLbl.isHidden = false
+    //            let temperature = city.temperature
+    //            if userChoice == 0 {
+    //                let tempUnit = "°C"
+    //                tempUnitLbl.text = tempUnit
+    //                let result = String(format: "%.0f", (temp-32) * 5/9)
+    //                temperatureLbl.text = result
+    //            } else {
+    //                let tempUnit = "°F"
+    //                tempUnitLbl.text = tempUnit
+    //                let result = String(format: "%.0f", temp)
+    //                temperatureLbl.text = result
+    //            }
+    //        }
+    //    }
+    
+    //    func windSpeedVelocityPresentation(windSpeedLbl: UILabel, windSpeedUnit: UILabel, speed: Double){
+    //        if let userChoise = UserDefaults.standard.value(forKey: "windSpeedUnit") as? Int {
+    //            if windSpeedLbl.text == "" {
+    //                windSpeedUnit.isHidden = true
+    //            }
+    //            windSpeedUnit.isHidden = false
+    //            if userChoise == 0 {
+    //                let windUnit = "m/s"
+    //                windSpeedUnit.text = windUnit
+    //                let result = String(format: "%.0f", speed)
+    //                windSpeedLbl.text = result
+    //            } else {
+    //                let windUnit = "km/h"
+    //                windSpeedUnit.text = windUnit
+    //                let result = String(format: "%.0f", (speed * 3.6))
+    //                windSpeedLbl.text = result
+    //            }
+    //        }
+    //    }
 }

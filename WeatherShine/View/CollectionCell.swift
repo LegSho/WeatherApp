@@ -21,7 +21,7 @@ class CollectionCell: UICollectionViewCell {
     func configureCell(city: City, tempUnit: String, windSpeedUnit: String){
         self.cityName.text = city.name
         
-        let tempUnitUserChoice = UserDefaults.standard.value(forKey: "tempUnit") as! Int
+        let tempUnitUserChoice = UserDefaults.standard.value(forKey: UserDefaultsKeys.tempUnitKey) as! Int
         if tempUnitUserChoice == 0 {
             self.temperature.text = String(format:"%.0f",((city.temperature-32) * 5/9))
             temperatureUnit.text = "°C"
@@ -36,7 +36,7 @@ class CollectionCell: UICollectionViewCell {
         windDirection.image = UIImage(named: "direction0-compas")
         self.windDirection.transform = CGAffineTransform(rotationAngle: CGFloat(degreesToRad(direction)))
         
-        let windUnitUserChoice = UserDefaults.standard.value(forKey: "windSpeedUnit") as! Int
+        let windUnitUserChoice = UserDefaults.standard.value(forKey: UserDefaultsKeys.windSpeedUnitKey) as! Int
         if windUnitUserChoice == 0 {
             self.windSpeed.text = String(format: "%.1f", city.windSpeed)
             self.windSpeedUnit.text = "m/s"

@@ -7,6 +7,20 @@
 //
 
 import UIKit
+import CoreData
+import CoreLocation
+
+extension MainViewController: CLLocationManagerDelegate {
+    
+    func configureLocation(_ completion: @escaping (Bool) -> ()) {
+        if authorizationStatus == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+            completion(true)
+        } else {
+            completion(false)
+        }
+    }  
+}
 
 
 

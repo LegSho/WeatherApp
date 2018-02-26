@@ -13,6 +13,23 @@ import CoreLocation
 
 class DataFunctions {
     
+    var locationManager = CLLocationManager()
+    var authorizationStatus = CLLocationManager.authorizationStatus()
+    
+    func getCurrentLocation(){
+        guard let coordinate = locationManager.location?.coordinate else {return}
+        print(coordinate.latitude , coordinate.longitude)
+        let userCurrentLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        self.fetchCity(location: userCurrentLocation) { (city) in
+            print(city)
+            self.getLocation(locationAsText: city, completion: { (success) in
+                if success {
+                    print("Successfully generated current location.")
+                }
+            })
+        }
+    }
+    
     func fetchCity(location: CLLocation, completion: @escaping (String) -> ()) {
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
             if let error = error {
@@ -49,7 +66,6 @@ class DataFunctions {
             print(city.name ?? "City Name", city.temperature, city.weatherCondition ?? "Weather Condition", city.windSpeed, city.windDirection)
             do{
                 try managedContext.save()
-                
             } catch {
                 print(error.localizedDescription)
             }
@@ -95,4 +111,7 @@ class DataFunctions {
             print("Could not remove, error:","\(error)")
         }
     }
+    
+//    bez ova 2 warning-a uvek mi izbacuje crash a promice mi kako bih mogao uraditi da izbegnem ih
+    
 }

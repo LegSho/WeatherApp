@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class MainViewController: UIViewController {
     
@@ -24,18 +25,28 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backgroundImg: UIImageView!
     @IBOutlet weak var introductionImg: UIImageView!
     
-    var favouriteCities: [City] = []
+    var locationManager = CLLocationManager()
+    var authorizationStatus = CLLocationManager.authorizationStatus()
+    
+//    var favouriteCities: [City] = []
     var tempUnit: String!
     var windUnit: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewDidLayoutSubviews()
+        locationManager.delegate = self
+        
+        configureLocation { (success) in
+            if success {
+                self.authorisation()
+            }
+        }
+    /* ova f-ja configureLocation i authorisation rade i da pronadje lokaciju u startu kao zahtev permission-a ali ispuni tek kad ponovo se vratim u MainViewController a i verovatno mi je do logike nesto ali kad odem na "DON'T ALLOW" on ipak prikaze current location.
+    */
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.reloadData()
-        
-        
         orientateDevice()
         scrollOrientation()
         setupView()
@@ -55,7 +66,18 @@ class MainViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    
+    func authorisation(){
+        if authorizationStatus != .denied {
+            DispatchQueue.main.async {
+                let dataFunction = DataFunctions()
+                dataFunction.getCurrentLocation()
+            }
+        }
+        DispatchQueue.main.async {
+            let dataFunction = DataFunctions()
+            dataFunction.deleteData()
+        }
+    }
     
     func temperaturePresentation(temperatureInFahrenheit temp: Double) {
         if let userChoise = UserDefaults.standard.value(forKey: "tempUnit") as? Int {
@@ -77,7 +99,6 @@ class MainViewController: UIViewController {
             }
         }
     }
-
     
     func windSpeedVelocityPresentation(speed: Double){
         if let userChoise = UserDefaults.standard.value(forKey: "windSpeedUnit") as? Int {
@@ -110,18 +131,6 @@ class MainViewController: UIViewController {
         transitionFromRight(USVC)
     }
 
-//    func fetchData(_ completion: (Bool) -> ()) {
-//        let managedContext = CoreDataStack.instance.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<City>(entityName: "City")
-//        do {
-//            favouriteCities = try managedContext.fetch(fetchRequest)
-//            print("Successfully fetched data.")
-//            completion(true)
-//        } catch {
-//            debugPrint("Error: \(error.localizedDescription)")
-//            completion(false)
-//        }
-//    }
     func setupView(){
         let function = Functions()
         function.currentDate { (date) in
@@ -130,7 +139,7 @@ class MainViewController: UIViewController {
         let dataFunction = DataFunctions()
         let favouriteCities = dataFunction.fetchData()
         function.hideOrUnhideFirstImg(favouriteCities: favouriteCities, image: introductionImg)
-        print("OVO JE BROJ GRADOVA:",favouriteCities.count)
+        print("Number of saved cities:",favouriteCities.count)
         print("Current city:", favouriteCities.last?.name ?? "Current city didn't find.")
         
         self.cityNameLbl.text = favouriteCities.last?.name
@@ -215,100 +224,11 @@ class MainViewController: UIViewController {
             }
         }
     }
-    
-    
-//    func setupView(){
-//        let function = Functions()
-//
-//        fetchData { (success) in
-//            if success {
-//                print(favouriteCities.count)
-//
-//                self.cityNameLbl.text = favouriteCities.last?.name
-//                guard let temperature = favouriteCities.last?.temperature else { return }
-//                temperaturePresentation(temperatureInFahrenheit: temperature)
-//                guard let wind = favouriteCities.last?.windSpeed else { return }
-//                windSpeedVelocityPresentation(speed: wind)
-//                guard let direction = favouriteCities.last?.windDirection else { return }
-//                function.windDirectionPresentation(angle: direction, windSpeedPicture: windSpeedPicture)
-//
-//                if let icon = favouriteCities.last?.weatherCondition {
-//                    self.weatherConditionPicture.image = UIImage(named: "\(icon)")
-//                    if icon == "clear-day" {
-//                        backgroundImg.image = UIImage(named: "ClearDay")
-//                    } else if icon == "clear-night" {
-//                        backgroundImg.image = UIImage(named: "ClearNight")
-//                        cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                    } else if icon == "partly-cloudy-day" {
-//                        backgroundImg.image = UIImage(named: "PartlyCloudyDay")
-//                        windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                    } else if icon == "partly-cloudy-night" {
-//                        backgroundImg.image = UIImage(named: "PartlyCloudyNight")
-//                        cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                    } else if icon == "cloudy" {
-//                        backgroundImg.image = UIImage(named: "CloudyDay")
-//                        windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                    } else if icon == "fog" {
-//                        backgroundImg.image = UIImage(named: "Foggy")
-//                        cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        windSpeedLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//                        windSpeedUnit.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//                    } else if icon == "rain" {
-//                        backgroundImg.image = UIImage(named: "Rainy")
-//                        cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                        windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//                    } else if icon == "snow" {
-//                        backgroundImg.image = UIImage(named: "SnowDay")
-//                        cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                    } else if icon == "sleet" {
-//                        backgroundImg.image = UIImage(named: "SleetDay")
-//                        cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                    } else if icon == "wind" {
-//                        backgroundImg.image = UIImage(named: "Windy")
-//                        cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                        windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//                    }
-//                }
-//            }
-//            print("Current city:", favouriteCities.last?.name ?? "Current city didn't find.")
-//        }
-//    }
 }
 
-
-
+/*
+ Najveci problem mi predstavlja taj sto ne uspevam da provalim kako bih sve ove fetch-ovane podatke mogao da kad se app upali ponovo, svi podaci update-uju (temperatura, brzina vetra i pravac, stanje vremena).
+ */
 
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -324,18 +244,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 reversedCities.append(city)
             }
         }
-        print("BROJ REVERSED CITIES:",favouriteCitiesReversed.count)
+        print(favouriteCitiesReversed.count)
         return reversedCities.count
-//        var reversedCities: [City] = []
-//        let currentCity = favouriteCities.last?.name
-//        let favouriteCitiesReversed : [City] = favouriteCities.reversed()
-//        for city in favouriteCitiesReversed {
-//            if city.name != currentCity {
-//                reversedCities.append(city)
-//            }
-//        }
-//        print("BROJ REVERSED CITIES:",favouriteCitiesReversed.count)
-//        return reversedCities.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -376,19 +286,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             collectionView.reloadData()
         }
     }
+    
+/* Pokusavao sam svasta pronaci da mi se sa orijentacijom istovremeno promeni i pravac scroll-ovanja collectionView-a ali to se dogodi tek po izlasku iz i ponovnom vracanju u MainVC.
+ */
 }
 
 
-//func deleteData(){
-//    let managedContext = CoreDataStack.instance.persistentContainer.viewContext
-//    let fetchRequest = NSFetchRequest<City>(entityName: "City")
-//    do{
-//        let data = try managedContext.fetch(fetchRequest) as? [NSManagedObject]
-//        _ = data.map{ $0.map{managedContext.delete($0)}}
-//        CoreDataStack.instance.saveContext()
-//        print("Successfully deleted data.")
-//    } catch let error {
-//        print("Unsuccessfully deleted data, caused by: \(error).")
-//    }
-//}
+
 

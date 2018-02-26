@@ -15,10 +15,6 @@ class UserSettingsViewController: UIViewController {
     @IBOutlet weak var temperatureSegmentedController: UISegmentedControl!
     @IBOutlet weak var windSpeedSegmentedController: UISegmentedControl!
     @IBOutlet weak var background: UIView!
-
-//    var tempUnit = "tempUnit"
-//    var windSpeedUnit = "windSpeedUnit"
-//    var themeType = "theme"
     
     override func viewDidLoad() {
         super.viewDidLoad()

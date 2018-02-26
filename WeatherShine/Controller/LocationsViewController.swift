@@ -34,20 +34,6 @@ class LocationsViewController: UIViewController {
         transitionFromLeft(SVC)
     }
 
-//    func fetchData(_ completion: (Bool) -> ()) {
-//        let managedContext = CoreDataStack.instance.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<City>(entityName: "City")
-//
-//        do {
-//            listOfFavouriteCities = try managedContext.fetch(fetchRequest)
-//            print("Successfully fetched data.", listOfFavouriteCities.count)
-//            completion(true)
-//        } catch {
-//            debugPrint("Error: \(error.localizedDescription)")
-//            completion(false)
-//        }
-//    }
-
     func dataForTable(){
         let dataFunction = DataFunctions()
         let favouriteCities = dataFunction.fetchData()
@@ -55,31 +41,8 @@ class LocationsViewController: UIViewController {
         self.currentCityForTable = currentCity
         self.listOfFavouriteCities = favouriteCities.filter{$0 != currentCity}
         self.reversedListOfFavouriteCities = listOfFavouriteCities.reversed()
-        
-//        fetchData { (success) in
-//            if success {
-//                guard let currentCity = listOfFavouriteCities.last else { return }
-//                self.currentCityForTable = currentCity
-//                self.listOfFavouriteCities = listOfFavouriteCities.filter{ $0 != currentCity}
-//                self.reversedListOfFavouriteCities = listOfFavouriteCities.reversed()
-//            }
-//        }
     }
-    
-//    func deleteData(atIndexPath indexPath: IndexPath) {
-//        let managedContext = CoreDataStack.instance.persistentContainer.viewContext
-//        guard let favouriteCities = reversedListOfFavouriteCities as? [City] else { return }
-//        managedContext.delete(favouriteCities[indexPath.row])
-//        do {
-//            try managedContext.save()
-//        } catch let error {
-//            print("Could not remove, error:","\(error)")
-//        }
-//    }
-    
 }
-
-
 
 
 extension LocationsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -141,7 +104,8 @@ extension LocationsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
+/* Ne uspevam provaliti kako se onemogucava celijama u nekom odredjenom section-u da budu deletovane, ovde kod mene, to je slucaj sa CURRENT LOCATION sekcijom
+ */
 
 
 
