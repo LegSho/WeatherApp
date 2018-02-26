@@ -384,11 +384,6 @@
                                         <exclude reference="LsY-VC-2eo"/>
                                         <exclude reference="M1W-2n-cib"/>
                                         <exclude reference="jWy-fi-x4x"/>
-                                        <exclude reference="1QJ-Sd-9L8"/>
-                                        <exclude reference="JLC-b3-UQl"/>
-                                        <exclude reference="jsu-Ow-JVD"/>
-                                        <exclude reference="3Ce-ku-WDz"/>
-                                        <exclude reference="y6f-dD-vt7"/>
                                         <exclude reference="ZWm-Bj-dVT"/>
                                         <exclude reference="1C4-8p-Zo0"/>
                                         <exclude reference="C7q-gv-L1c"/>
@@ -397,11 +392,16 @@
                                         <exclude reference="e7K-SR-gve"/>
                                         <exclude reference="ig5-tB-Vat"/>
                                         <exclude reference="l5q-cW-Z2A"/>
+                                        <exclude reference="1QJ-Sd-9L8"/>
+                                        <exclude reference="JLC-b3-UQl"/>
+                                        <exclude reference="jsu-Ow-JVD"/>
                                         <exclude reference="EM8-Bg-3Bo"/>
                                         <exclude reference="Jdz-jp-EZZ"/>
                                         <exclude reference="NiS-YS-aZF"/>
                                         <exclude reference="Y89-5i-3DU"/>
                                         <exclude reference="o9W-Kj-86G"/>
+                                        <exclude reference="3Ce-ku-WDz"/>
+                                        <exclude reference="y6f-dD-vt7"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact">
@@ -410,11 +410,11 @@
                                         <include reference="O1J-Hh-XmJ"/>
                                         <include reference="LsY-VC-2eo"/>
                                         <include reference="M1W-2n-cib"/>
-                                        <include reference="jsu-Ow-JVD"/>
                                         <include reference="ZWm-Bj-dVT"/>
                                         <include reference="1C4-8p-Zo0"/>
                                         <include reference="Kji-7Z-jOx"/>
                                         <include reference="ig5-tB-Vat"/>
+                                        <include reference="jsu-Ow-JVD"/>
                                         <include reference="Jdz-jp-EZZ"/>
                                         <include reference="NiS-YS-aZF"/>
                                         <include reference="Y89-5i-3DU"/>
@@ -431,15 +431,15 @@
                                         <include reference="dm2-Dm-Nsf"/>
                                         <include reference="4nL-WV-vmf"/>
                                         <include reference="jWy-fi-x4x"/>
-                                        <include reference="1QJ-Sd-9L8"/>
-                                        <include reference="JLC-b3-UQl"/>
-                                        <include reference="y6f-dD-vt7"/>
                                         <include reference="C7q-gv-L1c"/>
                                         <include reference="pVF-hz-SBK"/>
                                         <include reference="e7K-SR-gve"/>
                                         <include reference="l5q-cW-Z2A"/>
+                                        <include reference="1QJ-Sd-9L8"/>
+                                        <include reference="JLC-b3-UQl"/>
                                         <include reference="EM8-Bg-3Bo"/>
                                         <include reference="o9W-Kj-86G"/>
+                                        <include reference="y6f-dD-vt7"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -816,7 +816,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Novi Sad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gD7-bY-zjc">
-                                                            <rect key="frame" x="252.5" y="15" width="122" height="41"/>
+                                                            <rect key="frame" x="106.5" y="15" width="122" height="41"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
