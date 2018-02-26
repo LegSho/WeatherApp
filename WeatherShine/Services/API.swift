@@ -15,7 +15,7 @@ public class API {
     typealias JSONHandler = (([String: Any]?) -> ())
     func getWeatherAndAPI(forLatitute latitude: Double, andLongitude longitude: Double, _ completion: @escaping JSONHandler){
         
-        if let urlForForecast = URL(string: "\(latitude),\(longitude)", relativeTo: urlURL!){
+        if let urlForForecast = URL(string: "\(latitude),\(longitude)", relativeTo: APIConstants.urlURL!){
             let request = URLRequest(url: urlForForecast)
             let data = session.dataTask(with: request) { (data, response, error) in
                 if error == nil {

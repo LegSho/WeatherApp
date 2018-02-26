@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserSettingVC: UIViewController {
+class UserSettingsViewController: UIViewController {
     
     
     @IBOutlet weak var backBtn: UIButton!
@@ -16,9 +16,9 @@ class UserSettingVC: UIViewController {
     @IBOutlet weak var windSpeedSegmentedController: UISegmentedControl!
     @IBOutlet weak var background: UIView!
 
-    var tempUnit = "tempUnit"
-    var windSpeedUnit = "windSpeedUnit"
-    var themeType = "theme"
+//    var tempUnit = "tempUnit"
+//    var windSpeedUnit = "windSpeedUnit"
+//    var themeType = "theme"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,32 +26,32 @@ class UserSettingVC: UIViewController {
     }
     
     @IBAction func temperatureUnitChanged(_ sender: UISegmentedControl) {
-        UserDefaults.standard.set(sender.isMomentary, forKey: tempUnit)
+        UserDefaults.standard.set(sender.isMomentary, forKey: UserDefaultsKeys.tempUnitKey)
         if sender.selectedSegmentIndex == 0 {
-            UserDefaults.standard.set(0, forKey: tempUnit)
+            UserDefaults.standard.set(0, forKey: UserDefaultsKeys.tempUnitKey)
         } else {
-            UserDefaults.standard.set(1, forKey: tempUnit)
+            UserDefaults.standard.set(1, forKey: UserDefaultsKeys.tempUnitKey)
         }
     }
     
     @IBAction func windSpeedUnitChanged(_ sender: UISegmentedControl) {
-        UserDefaults.standard.set(sender.isMomentary, forKey: windSpeedUnit)
+        UserDefaults.standard.set(sender.isMomentary, forKey: UserDefaultsKeys.windSpeedUnitKey)
         if sender.selectedSegmentIndex == 0 {
-           UserDefaults.standard.set(0, forKey: windSpeedUnit)
+           UserDefaults.standard.set(0, forKey: UserDefaultsKeys.windSpeedUnitKey)
         } else {
-            UserDefaults.standard.set(1, forKey: windSpeedUnit)
+            UserDefaults.standard.set(1, forKey: UserDefaultsKeys.windSpeedUnitKey)
         }
     }
     
     func setupUnits(){
-        let tempUnit = UserDefaults.standard.value(forKey: self.tempUnit)
+        let tempUnit = UserDefaults.standard.value(forKey: UserDefaultsKeys.tempUnitKey)
         temperatureSegmentedController.selectedSegmentIndex = (tempUnit as! Int)
-        let windSpeedUnit = UserDefaults.standard.value(forKey: self.windSpeedUnit)
+        let windSpeedUnit = UserDefaults.standard.value(forKey: UserDefaultsKeys.windSpeedUnitKey)
         windSpeedSegmentedController.selectedSegmentIndex = windSpeedUnit as! Int
     }
     
     @IBAction func backBtnPressed(_ sender: Any) {
-        guard let LVC = storyboard?.instantiateViewController(withIdentifier: to_LocationVC) as? LocationsVC else { return }
+        guard let LVC = storyboard?.instantiateViewController(withIdentifier: SegueConstants.toLocationViewController) as? LocationsViewController else { return }
         transitionDismissLeft(LVC)
     }
     

@@ -20,21 +20,24 @@ class CollectionCell: UICollectionViewCell {
     
     func configureCell(city: City, tempUnit: String, windSpeedUnit: String){
         self.cityName.text = city.name
-        let tempUnitUserChoise = UserDefaults.standard.value(forKey: "tempUnit") as! Int
-        if tempUnitUserChoise == 0 {
+        
+        let tempUnitUserChoice = UserDefaults.standard.value(forKey: "tempUnit") as! Int
+        if tempUnitUserChoice == 0 {
             self.temperature.text = String(format:"%.0f",((city.temperature-32) * 5/9))
             temperatureUnit.text = "°C"
         } else {
             self.temperature.text = String(format:"%.0f",city.temperature)
             temperatureUnit.text = "°F"
         }
+        
+        
         weatherConditionImg.image = UIImage(named: "\((city.weatherCondition)!)")
         let direction = city.windDirection
         windDirection.image = UIImage(named: "direction0-compas")
         self.windDirection.transform = CGAffineTransform(rotationAngle: CGFloat(degreesToRad(direction)))
         
-        let windUnitUserChoise = UserDefaults.standard.value(forKey: "windSpeedUnit") as! Int
-        if windUnitUserChoise == 0 {
+        let windUnitUserChoice = UserDefaults.standard.value(forKey: "windSpeedUnit") as! Int
+        if windUnitUserChoice == 0 {
             self.windSpeed.text = String(format: "%.1f", city.windSpeed)
             self.windSpeedUnit.text = "m/s"
         } else {

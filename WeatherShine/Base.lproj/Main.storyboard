@@ -18,10 +18,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--MainVC-->
+        <!--Main View Controller-->
         <scene sceneID="jIi-Nd-cOS">
             <objects>
-                <viewController storyboardIdentifier="MainVC" id="srd-9l-59i" customClass="MainVC" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="srd-9l-59i" customClass="MainViewController" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t6h-Jx-fFe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -474,10 +474,10 @@
             </objects>
             <point key="canvasLocation" x="-348" y="-164.16791604197903"/>
         </scene>
-        <!--User SettingVC-->
+        <!--User Settings View Controller-->
         <scene sceneID="3cH-G8-bqw">
             <objects>
-                <viewController storyboardIdentifier="UserSettingVC" id="iMY-ZK-SRU" customClass="UserSettingVC" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserSettingVC" id="iMY-ZK-SRU" customClass="UserSettingsViewController" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WOj-AQ-9YW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -536,7 +536,7 @@
                                             <action selector="windSpeedUnitChanged:" destination="iMY-ZK-SRU" eventType="valueChanged" id="d1u-VW-dyu"/>
                                         </connections>
                                     </segmentedControl>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sog-3o-Svb" customClass="DeleteBtn" customModule="WeatherShine" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sog-3o-Svb" customClass="CustomButton" customModule="WeatherShine" customModuleProvider="target">
                                         <rect key="frame" x="20" y="335" width="337" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="DELETE LOCATIONS">
@@ -632,10 +632,10 @@
             </objects>
             <point key="canvasLocation" x="61.600000000000001" y="563.56821589205401"/>
         </scene>
-        <!--Pop UpVC-->
+        <!--Pop Up View Controller-->
         <scene sceneID="MiN-wv-XgV">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Op9-GK-exO" customClass="PopUpVC" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Op9-GK-exO" customClass="PopUpViewController" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ugO-WB-ay0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -668,7 +668,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2tt-tc-rAW">
                                         <rect key="frame" x="35" y="135.5" width="240" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OZ-q3-L3Y" customClass="DeleteBtn" customModule="WeatherShine" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OZ-q3-L3Y" customClass="CustomButton" customModule="WeatherShine" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -692,7 +692,7 @@
                                                     <action selector="cancelBtnPressed:" destination="Op9-GK-exO" eventType="touchUpInside" id="DZ4-eg-WXP"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFd-IJ-AV9" customClass="DeleteBtn" customModule="WeatherShine" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFd-IJ-AV9" customClass="CustomButton" customModule="WeatherShine" customModuleProvider="target">
                                                 <rect key="frame" x="130" y="0.0" width="110" height="30"/>
                                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -776,10 +776,10 @@
             </objects>
             <point key="canvasLocation" x="816.79999999999995" y="563.56821589205401"/>
         </scene>
-        <!--LocationsVC-->
+        <!--Locations View Controller-->
         <scene sceneID="Ft9-et-Jqe">
             <objects>
-                <viewController storyboardIdentifier="LocationsVC" id="UeO-9H-3wA" customClass="LocationsVC" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationsVC" id="UeO-9H-3wA" customClass="LocationsViewController" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qhP-pv-wg8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -903,10 +903,10 @@
             </objects>
             <point key="canvasLocation" x="-682" y="564"/>
         </scene>
-        <!--SearchVC-->
+        <!--Search View Controller-->
         <scene sceneID="X6D-jK-pZA">
             <objects>
-                <viewController storyboardIdentifier="SearchVC" id="jLz-Tv-0W7" customClass="SearchVC" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchVC" id="jLz-Tv-0W7" customClass="SearchViewController" customModule="WeatherShine" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mea-Mo-N4o">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
