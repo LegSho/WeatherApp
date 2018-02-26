@@ -11,46 +11,43 @@ import UIKit
 class UserSettingVC: UIViewController {
     
     
-    @IBOutlet weak var themeSegmentedController: UISegmentedControl!
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var temperatureSegmentedController: UISegmentedControl!
+    @IBOutlet weak var windSpeedSegmentedController: UISegmentedControl!
     @IBOutlet weak var background: UIView!
-    
-    var celsiusFahrenheit = CelsiusFahrenheit.celsius
+
+    var tempUnit = "tempUnit"
+    var windSpeedUnit = "windSpeedUnit"
+    var themeType = "theme"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        themeColor()
+        setupUnits()
     }
     
-    
-    @IBAction func themeChanged(_ sender: UISegmentedControl) {
-        UserDefaults.standard.set(sender.isMomentary, forKey: "select")
-        if(sender.selectedSegmentIndex == 0)
-        {
-            let segmentedControl = UserDefaults.standard
-            segmentedControl.set(0, forKey: "KeyName")
-            background.backgroundColor = UIColor.cyan
-        }
-        else if(sender.selectedSegmentIndex == 1)
-        {
-            let segmentedControl = UserDefaults.standard
-            segmentedControl.set(1, forKey: "KeyName")
-            background.backgroundColor = UIColor.blue
-        }
-    }
-    
-    func themeColor(){
-        let theme = UserDefaults.standard.value(forKey: "KeyName")
-        themeSegmentedController.selectedSegmentIndex = theme as! Int
-        if themeSegmentedController.selectedSegmentIndex == 0 {
-            background.backgroundColor = UIColor.cyan
-//            guard let VC = storyboard?.instantiateViewController(withIdentifier: to_MainVC) as? MainVC else { return }
-//            VC.userChangedBG(bgColor: background.backgroundColor!)
+    @IBAction func temperatureUnitChanged(_ sender: UISegmentedControl) {
+        UserDefaults.standard.set(sender.isMomentary, forKey: tempUnit)
+        if sender.selectedSegmentIndex == 0 {
+            UserDefaults.standard.set(0, forKey: tempUnit)
         } else {
-            background.backgroundColor = UIColor.blue
-//            guard let VC = storyboard?.instantiateViewController(withIdentifier: to_MainVC) as? MainVC else { return }
-//            VC.userChangedBG(bgColor: background.backgroundColor!)
+            UserDefaults.standard.set(1, forKey: tempUnit)
         }
+    }
+    
+    @IBAction func windSpeedUnitChanged(_ sender: UISegmentedControl) {
+        UserDefaults.standard.set(sender.isMomentary, forKey: windSpeedUnit)
+        if sender.selectedSegmentIndex == 0 {
+           UserDefaults.standard.set(0, forKey: windSpeedUnit)
+        } else {
+            UserDefaults.standard.set(1, forKey: windSpeedUnit)
+        }
+    }
+    
+    func setupUnits(){
+        let tempUnit = UserDefaults.standard.value(forKey: self.tempUnit)
+        temperatureSegmentedController.selectedSegmentIndex = (tempUnit as! Int)
+        let windSpeedUnit = UserDefaults.standard.value(forKey: self.windSpeedUnit)
+        windSpeedSegmentedController.selectedSegmentIndex = windSpeedUnit as! Int
     }
     
     @IBAction func backBtnPressed(_ sender: Any) {

@@ -14,8 +14,9 @@ extension UIViewController {
         transition.duration = 0.3
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
-        self.view.window?.layer.add(transition, forKey: kCATransition)
-        
+        DispatchQueue.main.async {
+            self.view.window?.layer.add(transition, forKey: kCATransition)
+        }
         present(VCToPresent, animated: false, completion: nil)
     }
     
@@ -25,7 +26,6 @@ extension UIViewController {
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
         self.view.window?.layer.add(transition, forKey: kCATransition)
-        
         dismiss(animated: false, completion: nil)
     }
     
@@ -35,7 +35,6 @@ extension UIViewController {
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
         self.view.window?.layer.add(transition, forKey: kCATransition)
-        
         present(VCToPresent, animated: false, completion: nil)
     }
     
@@ -45,7 +44,6 @@ extension UIViewController {
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
         self.view.window?.layer.add(transition, forKey: kCATransition)
-        
         dismiss(animated: false, completion: nil)
     }
 }

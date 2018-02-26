@@ -11,31 +11,40 @@ import CoreLocation
 import CoreData
 
 class SearchVC: UIViewController {
-
+    
     @IBOutlet weak var citySearchBar: UISearchBar!
-    var temp: Double?
-    var weatherCondition: String?
-    var windSpeed: Double?
-    var windDirection: Int32?
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         citySearchBar.delegate = self
+        activityIndicator.hidesWhenStopped = true
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        closeKeyboard()
+        citySearchBar.bindToKeyboard()
+    }
     @IBAction func backBtnPressed(_ sender: Any) {
         guard let LVC = storyboard?.instantiateViewController(withIdentifier: to_LocationVC) as? LocationsVC else { return }
         transitionFromRight(LVC)
     }
-
+    
     func returnToMainVC(){
         guard let VC = storyboard?.instantiateViewController(withIdentifier: to_MainVC) as? MainVC else { return}
         transitionFromRight(VC)
     }
-
-
+    
+    func closeKeyboard(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTap(){
+        self.view.endEditing(true)
+    }
 }
-
 
 
 
@@ -45,54 +54,55 @@ extension SearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text, !searchText.isEmpty {
-            getWatherForSearchedLocation(location: searchBar.text!)
-            guard let VC = self.storyboard?.instantiateViewController(withIdentifier: to_MainVC) as? MainVC else { return }
-            VC.cityName = searchBar.text
-            self.transitionFromRight(VC)
+            activityIndicator.startAnimating()
+            getLocation(locationAsText: searchBar.text!)
         }
     }
     
-    func getWatherForSearchedLocation(location: String){
-        CLGeocoder().geocodeAddressString(location) { (placemarks, err) in
+    func getLocation(locationAsText: String){
+        CLGeocoder().geocodeAddressString(locationAsText) { (placemarks, err) in
             if err == nil {
                 if let location = placemarks?.first?.location {
-                    let forecast = Forecast.init()
-                    forecast.getWeather(forLatitute: location.coordinate.latitude, andLongitude: location.coordinate.longitude, completion: { (result) in
-                        guard let VC = self.storyboard?.instantiateViewController(withIdentifier: to_MainVC) as? MainVC else { return }
-                        
-                        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-                        let city = City(context: managedContext)
-                        
-                        print("result " + result.weatherIcon )
-                        
-                        city.temperature = result.temperature
-                        city.weatherCondition = String(result.weatherIcon)
-                        city.windSpeed = result.windSpeed
-                        city.windDirection = Int32(result.windDirection)
-                        
-//                        print("city " + city.weatherCondition)
-                        
-                        do {
-                            try managedContext.save()
-                            print("Ima li kraja!!!!!!!!!")
-                        } catch {
-                            debugPrint("Error u pokusaju Catch-a za Data Core")
-                        }
-                        print("OVO JE OD CORE DATA:",city.temperature, city.weatherCondition, result.weatherIcon, city.windSpeed, city.windDirection)
-
-//                        VC.temperature = city.temperature
-//                        VC.weatherCondition = city.weatherCondition
-//                        VC.windSpeed = result.windSpeed!
-//                        VC.windDirection = result.windDirection!
-
-//                        VC.initDataForMVC(temperaturE: result.temperature!, weatherConditioN: result.weatherIcon!, windSpeeD: result.windSpeed!, windDirectioN: result.windDirection!)
-                       
-                        print(city.temperature, city.weatherCondition, city.windSpeed, city.windDirection)
+                    let api = API()
+                    api.getWeatherAndAPI(forLatitute: location.coordinate.latitude, andLongitude: location.coordinate.longitude, { (dictionary) in
+                        _ = self.makeCoreDataEntity(cityName: locationAsText, jsonDictionary: dictionary!)
+                        print("Successfully made CoreData Entity.")
                     })
                 }
-            } else {
-                print("Error: \(String(describing: err))")
             }
         }
     }
+    
+    func makeCoreDataEntity(cityName: String?, jsonDictionary: [String: Any]) -> NSManagedObject? {
+        let managedContext = CoreDataStack.instance.persistentContainer.viewContext
+        if let city = NSEntityDescription.insertNewObject(forEntityName: "City", into: managedContext) as? City {
+            city.name = cityName
+            city.temperature = (jsonDictionary["temperature"] as? Double)!
+            city.weatherCondition = jsonDictionary["icon"] as? String
+            city.windSpeed = (jsonDictionary["windSpeed"] as? Double)!
+            city.windDirection = Int32(jsonDictionary["windBearing"] as! Int)
+            print(city.name ?? "City Name", city.temperature, city.weatherCondition ?? "Weather Condition", city.windSpeed, city.windDirection)
+            do{
+                try managedContext.save()
+                DispatchQueue.main.async {
+                    if let MVC = self.storyboard?.instantiateViewController(withIdentifier: to_MainVC) as? MainVC {
+                        self.present(MVC, animated: true, completion: nil)
+                        self.activityIndicator.stopAnimating()
+                    }
+                }
+            }catch {
+                debugPrint("Error:", error.localizedDescription)
+            }
+            return city
+        } else {
+            return nil
+        }
+    }
 }
+
+
+
+
+
+
+

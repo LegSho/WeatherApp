@@ -19,13 +19,32 @@ class CollectionCell: UICollectionViewCell {
     @IBOutlet weak var windSpeedUnit: UILabel!
     
     func configureCell(city: City, tempUnit: String, windSpeedUnit: String){
-        
         self.cityName.text = city.name
-        temperature.text = String(format:"%.0f",city.temperature)
-        temperatureUnit.text = tempUnit
-        weatherConditionImg.image = UIImage(named: "\(city.weatherCondition)")
-        windDirection.image = UIImage(named: "\(city.windDirection)")
-        self.windSpeed.text = String(format: "%.1f", city.windSpeed)
-        self.windSpeedUnit.text = windSpeedUnit
+        let tempUnitUserChoise = UserDefaults.standard.value(forKey: "tempUnit") as! Int
+        if tempUnitUserChoise == 0 {
+            self.temperature.text = String(format:"%.0f",((city.temperature-32) * 5/9))
+            temperatureUnit.text = "°C"
+        } else {
+            self.temperature.text = String(format:"%.0f",city.temperature)
+            temperatureUnit.text = "°F"
+        }
+        weatherConditionImg.image = UIImage(named: "\((city.weatherCondition)!)")
+        let direction = city.windDirection
+        windDirection.image = UIImage(named: "direction0-compas")
+        self.windDirection.transform = CGAffineTransform(rotationAngle: CGFloat(degreesToRad(direction)))
+        
+        let windUnitUserChoise = UserDefaults.standard.value(forKey: "windSpeedUnit") as! Int
+        if windUnitUserChoise == 0 {
+            self.windSpeed.text = String(format: "%.1f", city.windSpeed)
+            self.windSpeedUnit.text = "m/s"
+        } else {
+            self.windSpeed.text = String(format: "%.1f", (city.windSpeed * 3.6))
+            self.windSpeedUnit.text = "km/h"
+        }
     }
+ 
+    func degreesToRad(_ degrees: Int32) -> CGFloat  {
+        return CGFloat(Double(degrees) * 3.1415 / 180)
+    }
+
 }
