@@ -24,13 +24,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var backgroundImg: UIImageView!
     @IBOutlet weak var introductionImg: UIImageView!
-    
-    var locationManager = CLLocationManager()
-    var authorizationStatus = CLLocationManager.authorizationStatus()
-    
-//    var favouriteCities: [City] = []
     var tempUnit: String!
     var windUnit: String!
+    var locationManager = CLLocationManager()
+    var authorizationStatus = CLLocationManager.authorizationStatus()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +39,6 @@ class MainViewController: UIViewController {
                 self.authorisation()
             }
         }
-    /* ova f-ja configureLocation i authorisation rade i da pronadje lokaciju u startu kao zahtev permission-a ali ispuni tek kad ponovo se vratim u MainViewController a i verovatno mi je do logike nesto ali kad odem na "DON'T ALLOW" on ipak prikaze current location.
-    */
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.reloadData()
@@ -154,81 +149,11 @@ class MainViewController: UIViewController {
         guard let direction = favouriteCities.last?.windDirection else { return }
         function.windDirectionPresentation(angle: direction, windSpeedPicture: windSpeedPicture)
         
-        if let icon = favouriteCities.last?.weatherCondition {
-            self.weatherConditionPicture.image = UIImage(named: "\(icon)")
-            if icon == "clear-day" {
-                backgroundImg.image = UIImage(named: "ClearDay")
-            } else if icon == "clear-night" {
-                backgroundImg.image = UIImage(named: "ClearNight")
-                cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            } else if icon == "partly-cloudy-day" {
-                backgroundImg.image = UIImage(named: "PartlyCloudyDay")
-                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            } else if icon == "partly-cloudy-night" {
-                backgroundImg.image = UIImage(named: "PartlyCloudyNight")
-                cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            } else if icon == "cloudy" {
-                backgroundImg.image = UIImage(named: "CloudyDay")
-                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            } else if icon == "fog" {
-                backgroundImg.image = UIImage(named: "Foggy")
-                cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                windSpeedLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                windSpeedUnit.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            } else if icon == "rain" {
-                backgroundImg.image = UIImage(named: "Rainy")
-                cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            } else if icon == "snow" {
-                backgroundImg.image = UIImage(named: "SnowDay")
-                cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            } else if icon == "sleet" {
-                backgroundImg.image = UIImage(named: "SleetDay")
-                cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            } else if icon == "wind" {
-                backgroundImg.image = UIImage(named: "Windy")
-                cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            }
-        }
+        function.getPictureForAppropriateWeather(favouriteCities: favouriteCities, weatherConditionPic: weatherConditionPicture, backgroundImg: backgroundImg, cityNameLbl: cityNameLbl, dateLbl: dateLbl, temperatureLbl: temperatureLbl, tempUnitLbl: tempUnitLbl, windSpeedLbl: windSpeedLbl, windSpeedUnit: windSpeedUnit)
     }
 }
 
-/*
- Najveci problem mi predstavlja taj sto ne uspevam da provalim kako bih sve ove fetch-ovane podatke mogao da kad se app upali ponovo, svi podaci update-uju (temperatura, brzina vetra i pravac, stanje vremena).
- */
+
 
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -286,9 +211,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             collectionView.reloadData()
         }
     }
-    
-/* Pokusavao sam svasta pronaci da mi se sa orijentacijom istovremeno promeni i pravac scroll-ovanja collectionView-a ali to se dogodi tek po izlasku iz i ponovnom vracanju u MainVC.
- */
 }
 
 

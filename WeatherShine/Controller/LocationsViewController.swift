@@ -104,8 +104,6 @@ extension LocationsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-/* Ne uspevam provaliti kako se onemogucava celijama u nekom odredjenom section-u da budu deletovane, ovde kod mene, to je slucaj sa CURRENT LOCATION sekcijom
- */
 
 
 

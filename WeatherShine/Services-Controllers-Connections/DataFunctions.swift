@@ -111,7 +111,4 @@ class DataFunctions {
             print("Could not remove, error:","\(error)")
         }
     }
-    
-//    bez ova 2 warning-a uvek mi izbacuje crash a promice mi kako bih mogao uraditi da izbegnem ih
-    
 }

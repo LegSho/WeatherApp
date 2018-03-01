@@ -49,48 +49,76 @@ class Functions {
         }
         return reversedCities
     }
-    
-    //    pokusavao sam da ove 2 donje f-je iz MainViewControllera izvucem u posebnu klasu, iako mi samo tamo trebaju, ali me je const. zezala f-ja za collectionViewCell - configureCell :/, pa sam ih ostavio tamo ipak
-    
-    
-    //    func temperaturePresentation(temp: Double, tempUnitLbl: UILabel, temperatureLbl: UILabel) {
-    //        if let userChoice = UserDefaults.standard.value(forKey: "tempUnit") as? Int {
-    //            if city.name == "" {
-    //                tempUnitLbl.isHidden = true
-    //            }
-    //            tempUnitLbl.isHidden = false
-    //            let temperature = city.temperature
-    //            if userChoice == 0 {
-    //                let tempUnit = "°C"
-    //                tempUnitLbl.text = tempUnit
-    //                let result = String(format: "%.0f", (temp-32) * 5/9)
-    //                temperatureLbl.text = result
-    //            } else {
-    //                let tempUnit = "°F"
-    //                tempUnitLbl.text = tempUnit
-    //                let result = String(format: "%.0f", temp)
-    //                temperatureLbl.text = result
-    //            }
-    //        }
-    //    }
-    
-    //    func windSpeedVelocityPresentation(windSpeedLbl: UILabel, windSpeedUnit: UILabel, speed: Double){
-    //        if let userChoise = UserDefaults.standard.value(forKey: "windSpeedUnit") as? Int {
-    //            if windSpeedLbl.text == "" {
-    //                windSpeedUnit.isHidden = true
-    //            }
-    //            windSpeedUnit.isHidden = false
-    //            if userChoise == 0 {
-    //                let windUnit = "m/s"
-    //                windSpeedUnit.text = windUnit
-    //                let result = String(format: "%.0f", speed)
-    //                windSpeedLbl.text = result
-    //            } else {
-    //                let windUnit = "km/h"
-    //                windSpeedUnit.text = windUnit
-    //                let result = String(format: "%.0f", (speed * 3.6))
-    //                windSpeedLbl.text = result
-    //            }
-    //        }
-    //    }
+
+    func getPictureForAppropriateWeather(favouriteCities: [City], weatherConditionPic: UIImageView, backgroundImg: UIImageView, cityNameLbl: UILabel, dateLbl: UILabel, temperatureLbl: UILabel, tempUnitLbl:UILabel, windSpeedLbl: UILabel, windSpeedUnit: UILabel){
+        if let icon = favouriteCities.last?.weatherCondition {
+            weatherConditionPic.image = UIImage(named: "\(icon)")
+            if icon == "clear-day" {
+                backgroundImg.image = UIImage(named: "ClearDay")
+            } else if icon == "clear-night" {
+                backgroundImg.image = UIImage(named: "ClearNight")
+                cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            } else if icon == "partly-cloudy-day" {
+                backgroundImg.image = UIImage(named: "PartlyCloudyDay")
+                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            } else if icon == "partly-cloudy-night" {
+                backgroundImg.image = UIImage(named: "PartlyCloudyNight")
+                cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            } else if icon == "cloudy" {
+                backgroundImg.image = UIImage(named: "CloudyDay")
+                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            } else if icon == "fog" {
+                backgroundImg.image = UIImage(named: "Foggy")
+                cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                windSpeedLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                windSpeedUnit.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            } else if icon == "rain" {
+                backgroundImg.image = UIImage(named: "Rainy")
+                cityNameLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                dateLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                temperatureLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                tempUnitLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                windSpeedUnit.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                windSpeedLbl.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            } else if icon == "snow" {
+                backgroundImg.image = UIImage(named: "SnowDay")
+                cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            } else if icon == "sleet" {
+                backgroundImg.image = UIImage(named: "SleetDay")
+                cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            } else if icon == "wind" {
+                backgroundImg.image = UIImage(named: "Windy")
+                cityNameLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                dateLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                temperatureLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                tempUnitLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                windSpeedLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                windSpeedUnit.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            }
+        }
+    }
 }
