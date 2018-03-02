@@ -10,10 +10,6 @@ import UIKit
 
 class PopUpViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     @IBAction func cancelBtnPressed(_ sender: CustomButton) {
         dismiss(animated: true, completion: nil)
     }

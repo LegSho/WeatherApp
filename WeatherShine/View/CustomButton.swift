@@ -16,11 +16,12 @@ class CustomButton: UIButton {
             self.layer.cornerRadius = cornerRadius
         }
     }
-    
     override func awakeFromNib() {
         self.setupView()
     }
-    
+}
+
+extension CustomButton{
     func setupView() {
         self.layer.cornerRadius = cornerRadius
     }

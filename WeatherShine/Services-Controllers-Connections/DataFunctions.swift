@@ -30,7 +30,7 @@ class DataFunctions {
         }
     }
     
-    func fetchCity(location: CLLocation, completion: @escaping (String) -> ()) {
+    fileprivate func fetchCity(location: CLLocation, completion: @escaping (String) -> ()) {
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
             if let error = error {
                 print(error)
@@ -40,7 +40,7 @@ class DataFunctions {
         }
     }
     
-    func getLocation(locationAsText: String, completion: @escaping (Bool) -> ()){
+    public func getLocation(locationAsText: String, completion: @escaping (Bool) -> ()){
         CLGeocoder().geocodeAddressString(locationAsText) { (placemarks, err) in
             if err == nil {
                 if let location = placemarks?.first?.location {
@@ -55,7 +55,7 @@ class DataFunctions {
         }
     }
     
-    func makeCoreDataEntity(cityName: String?, jsonDictionary: [String: Any]) -> NSManagedObject? {
+    fileprivate func makeCoreDataEntity(cityName: String?, jsonDictionary: [String: Any]) -> NSManagedObject? {
         let managedContext = CoreDataStack.instance.persistentContainer.viewContext
         if let city = NSEntityDescription.insertNewObject(forEntityName: "City", into: managedContext) as? City {
             city.name = cityName
@@ -74,7 +74,7 @@ class DataFunctions {
         return nil
     }
     
-    func fetchData() -> [City] {
+    public func fetchData() -> [City] {
         let managedContext = CoreDataStack.instance.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<City>(entityName: "City")
         var favouriteCities: [City] = []
@@ -88,7 +88,7 @@ class DataFunctions {
         return favouriteCities
     }
     
-    func deleteData(){
+    public func deleteData(){
         let managedContext = CoreDataStack.instance.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<City>(entityName: "City")
         do{
@@ -101,7 +101,7 @@ class DataFunctions {
         }
     }
     
-    func deleteData(atIndexPath indexPath: IndexPath, fromReversedListOfFavouriteCities reversedListOfFavouriteCities: [City?]) {
+    public func deleteData(atIndexPath indexPath: IndexPath, fromReversedListOfFavouriteCities reversedListOfFavouriteCities: [City?]) {
         let managedContext = CoreDataStack.instance.persistentContainer.viewContext
         guard let favouriteCities = reversedListOfFavouriteCities as? [City?] else { return }
         managedContext.delete(favouriteCities[indexPath.row]!)

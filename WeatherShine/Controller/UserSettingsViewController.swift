@@ -39,7 +39,7 @@ class UserSettingsViewController: UIViewController {
         }
     }
     
-    func setupUnits(){
+    fileprivate func setupUnits(){
         let tempUnit = UserDefaults.standard.value(forKey: UserDefaultsKeys.tempUnitKey)
         temperatureSegmentedController.selectedSegmentIndex = (tempUnit as! Int)
         let windSpeedUnit = UserDefaults.standard.value(forKey: UserDefaultsKeys.windSpeedUnitKey)
@@ -50,5 +50,4 @@ class UserSettingsViewController: UIViewController {
         guard let LVC = storyboard?.instantiateViewController(withIdentifier: SegueConstants.toLocationViewController) as? LocationsViewController else { return }
         transitionDismissLeft(LVC)
     }
-    
 }

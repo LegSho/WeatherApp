@@ -30,7 +30,6 @@ class CollectionCell: UICollectionViewCell {
             temperatureUnit.text = "°F"
         }
         
-        
         weatherConditionImg.image = UIImage(named: "\((city.weatherCondition)!)")
         let direction = city.windDirection
         windDirection.image = UIImage(named: "direction0-compas")
@@ -49,5 +48,4 @@ class CollectionCell: UICollectionViewCell {
     func degreesToRad(_ degrees: Int32) -> CGFloat  {
         return CGFloat(Double(degrees) * 3.1415 / 180)
     }
-
 }

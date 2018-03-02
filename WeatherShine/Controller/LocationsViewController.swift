@@ -12,7 +12,8 @@ import CoreData
 class LocationsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    let dataFunction = DataFunctions()
+
     var currentCityForTable: City?
     var listOfFavouriteCities: [City?] = []
     var reversedListOfFavouriteCities: [City?] = []
@@ -35,7 +36,6 @@ class LocationsViewController: UIViewController {
     }
 
     func dataForTable(){
-        let dataFunction = DataFunctions()
         let favouriteCities = dataFunction.fetchData()
         guard let currentCity = favouriteCities.last else { return }
         self.currentCityForTable = currentCity
@@ -103,7 +103,3 @@ extension LocationsViewController: UITableViewDelegate, UITableViewDataSource {
         return [action]
     }
 }
-
-
-
-

@@ -11,7 +11,6 @@ import UIKit
 import CoreData
 
 class Functions {
-
     func degreesToRad(_ degrees: Int32) -> CGFloat  {
         return CGFloat(Double(degrees) * 3.1415 / 180)
     }

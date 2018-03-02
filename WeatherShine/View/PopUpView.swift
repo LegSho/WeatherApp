@@ -20,7 +20,9 @@ class PopUpView: UIView {
     override func awakeFromNib() {
         self.setupView()
     }
-    
+}
+
+extension PopUpView {
     func setupView() {
         self.layer.cornerRadius = cornerRadius
     }

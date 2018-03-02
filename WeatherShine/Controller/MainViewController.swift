@@ -33,15 +33,12 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         viewDidLayoutSubviews()
         locationManager.delegate = self
-        
         configureLocation { (success) in
             if success {
                 self.authorisation()
             }
         }
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.reloadData()
+        collectionViewSetup()
         orientateDevice()
         scrollOrientation()
         setupView()
@@ -61,7 +58,13 @@ class MainViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    func authorisation(){
+    fileprivate func collectionViewSetup(){
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.reloadData()
+    }
+    
+    fileprivate func authorisation(){
         if authorizationStatus != .denied {
             DispatchQueue.main.async {
                 let dataFunction = DataFunctions()
@@ -74,7 +77,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func temperaturePresentation(temperatureInFahrenheit temp: Double) {
+    fileprivate func temperaturePresentation(temperatureInFahrenheit temp: Double) {
         if let userChoise = UserDefaults.standard.value(forKey: "tempUnit") as? Int {
             if cityNameLbl.text == "" {
                 tempUnitLbl.isHidden = true
@@ -95,7 +98,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func windSpeedVelocityPresentation(speed: Double){
+    fileprivate func windSpeedVelocityPresentation(speed: Double){
         if let userChoise = UserDefaults.standard.value(forKey: "windSpeedUnit") as? Int {
             if windSpeedLbl.text == "" {
                 windSpeedUnit.isHidden = true
@@ -126,7 +129,7 @@ class MainViewController: UIViewController {
         transitionFromRight(USVC)
     }
 
-    func setupView(){
+    fileprivate func setupView(){
         let function = Functions()
         function.currentDate { (date) in
             self.dateLbl.text = date
@@ -134,9 +137,6 @@ class MainViewController: UIViewController {
         let dataFunction = DataFunctions()
         let favouriteCities = dataFunction.fetchData()
         function.hideOrUnhideFirstImg(favouriteCities: favouriteCities, image: introductionImg)
-        print("Number of saved cities:",favouriteCities.count)
-        print("Current city:", favouriteCities.last?.name ?? "Current city didn't find.")
-        
         self.cityNameLbl.text = favouriteCities.last?.name
         function.hideOrUnhideFirstImg(favouriteCities: favouriteCities, image: introductionImg)
         
@@ -152,9 +152,6 @@ class MainViewController: UIViewController {
         function.getPictureForAppropriateWeather(favouriteCities: favouriteCities, weatherConditionPic: weatherConditionPicture, backgroundImg: backgroundImg, cityNameLbl: cityNameLbl, dateLbl: dateLbl, temperatureLbl: temperatureLbl, tempUnitLbl: tempUnitLbl, windSpeedLbl: windSpeedLbl, windSpeedUnit: windSpeedUnit)
     }
 }
-
-
-
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -191,7 +188,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    func scrollOrientation(){
+    fileprivate func scrollOrientation(){
         if UIDevice.current.orientation.isPortrait {
             UserDefaults.standard.set(true, forKey: "orientation")
         } else {
@@ -199,7 +196,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    func orientateDevice(){
+    fileprivate func orientateDevice(){
         let orientation = UserDefaults.standard.value(forKey: "orientation") as! Bool
         if orientation {
             let scroll = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
@@ -212,7 +209,3 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
 }
-
-
-
-
